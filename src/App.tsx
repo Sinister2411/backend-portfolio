@@ -1,12 +1,22 @@
 import React from "react";
+import { useTheme } from "@/components/theme-provider";
+import { Sun, Moon } from 'lucide-react';
 
 function App() {
+  const { theme, setTheme } = useTheme();
+  const isDark = theme === 'dark';
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       {/* Theme Toggle */}
       <div className="flex justify-end p-4">
-        {/* Placeholder: ThemeToggle component */}
-        <button className="rounded px-2 py-1 border">Toggle Theme</button>
+        <button
+          onClick={() => setTheme(isDark ? 'light' : 'dark')}
+          className="p-2 rounded-full border flex items-center justify-center"
+          aria-label="Toggle theme"
+          type="button"
+        >
+          {isDark ? <Sun size={20} className="text-yellow-400" /> : <Moon size={20} className="text-gray-900" />}
+        </button>
       </div>
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center py-16 gap-2">
@@ -61,7 +71,7 @@ function App() {
         <h3 className="text-2xl font-semibold mb-2">Experience</h3>
         <div>
           <div className="mb-4">
-            <strong>Backend Engineer</strong> —
+            <strong>Backend Engineer</strong> — 
             <p className="text-sm text-muted-foreground">2020–Present<br />Developed secure, scalable microservices for village-wide communications and intelligence.</p>
           </div>
         </div>
